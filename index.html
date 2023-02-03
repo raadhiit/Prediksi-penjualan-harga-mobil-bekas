@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="color:blue; float:centre;">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2 style="font-family:Lucida Bright; color:#000000; font-size: 50px;">TEMUKAN PREDIKSI HARGA JUAL UNTUK MOBIL BEKASMU</h2>
+            
+            <h3>Pilih Merk Kendaraan </h3><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="vehicle_name" id="car" required="required">
+                <option value="Nissan Grand Livina">Nissan Grand Livina</option>
+                <option value="Honda CRV Prestige ">Honda CRV Prestige </option>
+                <option value="Honda CRV 2.0">Honda CRV 2.0</option>
+                <option value="Honda Mobilio">Honda Mobilio</option>
+                <option value="Honda HR-V 1.5 E">Honda HR-V 1.5 E</option>
+                <option value="Toyota Agya G AT">Toyota Agya G AT</option>
+                <option value="Toyota Avanza 1.5 Veloz">Toyota Avanza 1.5 Veloz</option>
+                <option value="Toyota Kijang Innova 2.0 G">Toyota Kijang Innova 2.0 G</option>
+                <option value="Toyota Rush G AT">Toyota Rush G AT</option>
+                <option value="Toyota Fortuner SUV">Toyota Fortuner SUV</option>
+                <option value="Suzuki Ertiga GX MT">Suzuki Ertiga GX MT</option>
+                <option value="Suzuki Ertiga GL AT">Suzuki Ertiga GL AT</option>
+                <option value="Suzuki Ignis Hatchback">Suzuki Ignis Hatchback</option>
+                <option value="Daihatsu Ayla 1.0">Daihatsu Ayla 1.0</option>
+                <option value="Daihatsu Sigra 1.2 R MT">Daihatsu Sigra 1.2 R MT</option>
+                <option value="Daihatsu Terios">Daihatsu Terios</option>
+                <option value="Mitsubishi Outlander PX">Mitsubishi Outlander PX</option>
+                <option value="Mtshubishi Pajero Sport">Mtshubishi Pajero Sport</option>
+
+            </select>
+            
+            <h3 >Tahun pembuatan</h3><br><br>
+            <input id="year" name="Tahun" type="number " required="required">
+            
+            <h3>Berapakah harga jual mobil tersebut saat ini (dlm juta rupiah)? </h3><br><br>
+            <input id="showroom" name="Harga_Saat_Ini" required="required">
+            
+            <h3>Berapa total kilometer saat ini ?</h3><br><br><input id="kms" name="Kilometer" required="required">
+            
+            <h3>Total kepemilikan mobil ini sudah berapa kali ?</h3><br><br><input id="owner" name="Kepemilikan" required="required">
+            
+            <h3>Apa jenis bahan bakarnya ?</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Jenis_Bahan_Bakar" id="fuel" required="required">
+                <option value="Bensin">Bensin</option>
+                <option value="Solar">Solar</option>
+            </select>
+            
+            <h3>Apakah kamu seorang Dealer atau Individu?</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Tipe_Penjual" id="dealer" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            
+            <h3>Tipe Transmisi</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Transmisi" id="transmission" required="required">
+                <option value="Mannual" >Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            
+            <br><br><button style="font-family:Calibri; color:#FFFFFF; font-size: 16px;" id="sub" type="submit ">Temukan Harga Penjualan Mobil Bekas</button>
+            <h4 style="color:blue; float:right; color:#000000; font-size: 30px;">{{ prediction_text }}</h4>
+<!--            <h4>{{ prediction_text }}</h4>-->
+
+
+
+
+        </form>
+
+    </div>
+    
+<!--
+    <div style="color:blue; float:right; width:300px; color:#12DA9D; font-size: 30px;">
+        <h4>{{ prediction_text }}</h4>
+    
+    </div>
+-->
+    
+
+    
+
+
+    <style>
+        body {
+            background-color: #4682B4;
+            text-align: center;
+            padding: 0px;
+        }
+        
+/*
+        #pred_s {
+            position: fixed;
+                right:2500px;
+                top:1000px;
+                font-family:Calibri;
+                color:#000000;
+                font-size: 30px;                   
+        }
+                
+*/
+
+        
+        h3 {
+            position: absolute;
+                left:10 px;
+                top:100 px;
+                font-family:Optima;
+                color:#000000;
+                font-size: 20px;                   
+        }
+        
+        #car {
+            width: 185px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        #car:hover {
+            background-color: #F8F8FF;
+        }
+        
+        #year {
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #showroom{
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #research {
+            font-size: 18px;
+            width: 100px;
+            height: 30px;
+            top: 23px;
+        }
+        
+        #kms {
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #owner{
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #fuel {
+            width: 185px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        #fuel:hover {
+            background-color: #F8F8FF;
+        }
+        
+        #dealer {
+            width: 185px;
+            height: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        #dealer:hover {
+            background-color: #F8F8FF;
+        }
+        
+        
+        #transmission {
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        #transmission:hover {
+            background-color: #F8F8FF;
+        }
+
+
+
+        #sub {
+            width: 180px;
+            height: 50px;
+            text-align: center;
+            font-size: 18px;
+            background-color: #000000;
+        }
+        
+        #sub:hover {
+            background-color: #BC8F8F;
+        }
+        
+   
+
+    </style>
+</body>
+
+</html>
